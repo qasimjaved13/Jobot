@@ -1,0 +1,20 @@
+{
+  "workEmailAddress": "input[aria-label='Work Email Address']",
+  "firstName": "input[aria-label='First name']",
+  "lastName": "input[aria-label='Last name']",
+  "workPhone": "input[aria-label='Work Phone']",
+  "ext":"input[aria-label='Ext.']",
+  "company":"input[aria-label='Company']",
+  "companyWebsite":"input[aria-label='Company Website']",
+  "yourJobTitle":"input[aria-label='Your Job Title']",
+  "industry":"label.q-select",
+  "positions":"input[aria-label='Position(s)']",
+  "zipCodeOrLocation":"input[aria-label='Zip code or location']",
+  "textArea":"textarea.q-field__native.q-placeholder",
+  "remotePosition":".q-toggle__inner",
+  "submitBtn":"button[type='submit']",
+  "confirmatoinMessage":".text-h4.text-primary",
+  "emailValidationMessage":".q-field__messages.col",
+  "termsAndConditions":".text-subtitle2 > [href='/terms-and-conditions']",
+  "privayAndPolicy": ".text-subtitle2 > [href='/privacy-policy']"
+}

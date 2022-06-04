@@ -1,0 +1,16 @@
+{
+    "watchForFileChanges": false,
+    "responseTimeout": 6000,
+    "screenshotOnFailure": false,
+    "video": false,
+    "baseUrl": "https://uat.jobot.com/become-a-client",
+    "reporter": "mochawesome",
+    "reporterOptions": {
+        "code": false,
+        "overwrite": false,
+        "reportFilename": "Test-Report",
+        "autoOpen": true,
+        "charts": true
+    },
+    "testFiles": "**/*.{feature,features}"
+}
