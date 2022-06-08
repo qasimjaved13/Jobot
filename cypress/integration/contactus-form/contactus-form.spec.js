@@ -1,4 +1,4 @@
-import { Given, And, When, Then } from "cypress-cucumber-preprocessor/steps";
+import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 
 const getElement = require("../../fixtures/locators.json")
 
@@ -10,7 +10,7 @@ Given('I navigate to the Jobot website', () => {
     })
 })
 
-And('I enter all the information into the form', (datatable) => {
+When('I enter all the information into the form', (datatable) => {
     datatable.hashes().forEach(element => {
         cy.get(getElement.workEmailAddress).type(element.workEmailAddress)
         cy.get(getElement.firstName).type(element.firstName)
@@ -20,8 +20,8 @@ And('I enter all the information into the form', (datatable) => {
         cy.get(getElement.company).type(element.company)
         cy.get(getElement.companyWebsite).type(element.companyWebsite)
         cy.get(getElement.yourJobTitle).type(element.yourJobTitle)
-        cy.get(getElement.industry).then(industrydropdown => {
-            cy.wrap(industrydropdown).click()
+        cy.get(getElement.industry).then(industryDropdown => {
+            cy.wrap(industryDropdown).click()
             cy.contains(element.industry).click()
         })
         cy.get(getElement.positions).type(element.positions)
@@ -31,131 +31,104 @@ And('I enter all the information into the form', (datatable) => {
     });
 })
 
-And('I enter valid email address as {string} into work email address', (workEmailAddress) => {
+When('I enter {string} into work email address', (workEmailAddress) => {
     cy.get(getElement.workEmailAddress).type(workEmailAddress)
 })
 
 When('I click on submit button', () => {
     cy.get(getElement.submitBtn).click()
-    cy.wait(5000)
 })
 
 Then('Form should submit successfully', () => {
-    cy.get(getElement.confirmatoinMessage).should('exist')
+    cy.get(getElement.confirmationMessage).should('exist')
 })
 
-Then('Form should not submit and validation message should appear successfully', () => {
+Then('An email validation message should appear', () => {
     cy.get(getElement.emailValidationMessage).should('exist')
 })
 
-And('I enter whitespaces as {string} into work email address', (workEmailAddress) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I enter {int} characters into work email address', (workEmailAddress) => {
+    cy.get(getElement.workEmailAddress).type(makeLargeString(workEmailAddress))
 })
 
-And('I enter invalid email address as {string} into work email address', (workEmailAddress) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+Then('Validation message saying {string} should appear.', (characterLimitValidationMessage) => {
+    cy.contains(characterLimitValidationMessage).should('exist')
 })
 
-Then('Validation message should appear and form should not submit', () => {
-    cy.wait(5000)
-    cy.get(getElement.confirmatoinMessage).should('not.exist')
+When('I insert {int} characters into ext number', (ext) => {
+    cy.get(getElement.ext).type(makeLargeNumber(ext))
 })
 
-And('I enter more than 256 characters as {string} into work email address', (workEmailAddress) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-})
-
-Then('Validation message should appear in case exceeding characters limit', () => {
-    cy.contains('Sorry! you are exceeding the charcaters limit').should('exist')
-})
-
-And('I enter {string} into work email address and insert Ext number containing more than 24 characters as {string}', (workEmailAddress, ext) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert alphabetic & special characters as {string} into ext number', (ext) => {
     cy.get(getElement.ext).type(ext)
 })
 
-And('I enter {string} into work email address and insert alphabetic & special characters as {string} into ext number', (workEmailAddress, ext) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-    cy.get(getElement.ext).type(ext)
+Then('Validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
-Then('Validation message should appear for invalid data', () => {
-    cy.contains('Alphabets and special characters are not allowed').should('exist')
+When('I insert {int} characters into company name', (company) => {
+    cy.get(getElement.company).type(makeLargeString(company))
 })
 
-And('I enter {string} into work email address and insert company name containing more than 256 characters as {string}', (workEmailAddress, company) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-    cy.get(getElement.company).type(company)
+When('I insert {int} characters into company website', (companyWebsite) => {
+    cy.get(getElement.companyWebsite).type(makeLargeString(companyWebsite))
 })
 
-And('I enter {string} into work email address and insert company website containing more than 256 characters as {string}', (workEmailAddress, companyWebsite) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-    cy.get(getElement.companyWebsite).type(companyWebsite)
+When('I insert {int} characters into job title', (yourJobTitle) => {
+    cy.get(getElement.yourJobTitle).type(makeLargeString(yourJobTitle))
 })
 
-And('I enter {string} into work email address and insert job title containing more than 256 characters as {string}', (workEmailAddress, yourJobTitle) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-    cy.get(getElement.yourJobTitle).type(yourJobTitle)
+When('I insert {int} characters into zipCodeOrLocation', (zipCodeOrLocation) => {
+    cy.get(getElement.zipCodeOrLocation).type(makeLargeNumber(zipCodeOrLocation))
 })
 
-And('I enter {string} into work email address and insert zipCodeOrLocation containing more than 256 characters as {string}', (workEmailAddress, zipCodeOrLocation) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert alphabetic & special characters as {string} into zipCodeOrLocation', (zipCodeOrLocation) => {
     cy.get(getElement.zipCodeOrLocation).type(zipCodeOrLocation)
 })
 
-And('I enter {string} into work email address and insert alphabetic & special characters as {string} into zipCodeOrLocation', (workEmailAddress, zipCodeOrLocation) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert less than 5 digits as {string} into zipCodeOrLocation', (zipCodeOrLocation) => {
     cy.get(getElement.zipCodeOrLocation).type(zipCodeOrLocation)
 })
 
-And('I enter {string} into work email address and insert less than 5 digits as {string} into zipCodeOrLocation', (workEmailAddress, zipCodeOrLocation) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert greater than 5 digits as {string} into zipCodeOrLocation', (zipCodeOrLocation) => {
     cy.get(getElement.zipCodeOrLocation).type(zipCodeOrLocation)
 })
 
-And('I enter {string} into work email address and insert greater than 5 digits as {string} into zipCodeOrLocation', (workEmailAddress, zipCodeOrLocation) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
-    cy.get(getElement.zipCodeOrLocation).type(zipCodeOrLocation)
-})
-
-And('I enter {string} into work email address and insert less than 10 digits as {string} into work phone', (workEmailAddress, workPhone) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert less than 10 digits as {string} into work phone', (workPhone) => {
     cy.get(getElement.workPhone).type(workPhone)
 })
 
-Then('Validation message should appear incase incorrect characters length for work phone field', () => {
-    cy.contains('Work phone should be 10 characters long').should('exist')
+Then('Validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
-Then('Validation message should appear for incase incorrect characters length for zipCodeOrLocation field', () => {
-    cy.contains('zipCodeOrLocation should be 5 characters long').should('exist')
+Then('Validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
-And('I enter {string} into work email address and insert whitespaces as {string} into ext number', (workEmailAddress, ext) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert whitespaces as {string} into ext number', (ext) => {
     cy.get(getElement.ext).type(ext)
 })
 
-Then('Validation message should appear if whitespaces include in ext number textfield', () => {
-    cy.contains('Whitespaces are not allowed in ext number textfield').should('exist')
+Then('Validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
-And('I enter {string} into work email address and insert whitespaces as {string} into company website', (workEmailAddress, companyWebsite) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert whitespaces as {string} into company website', (companyWebsite) => {
     cy.get(getElement.companyWebsite).type(companyWebsite)
 })
 
-Then('Validation message should appear if whitespaces include in company website textfield', () => {
-    cy.contains('Whitespaces are not allowed in company website textfield').should('exist')
+Then('validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
-And('I enter {string} into work email address and insert whitespaces as {string} into zipCodeOrLocation', (workEmailAddress, zipCodeOrLocation) => {
-    cy.get(getElement.workEmailAddress).type(workEmailAddress)
+When('I insert whitespaces as {string} into zipCodeOrLocation', (zipCodeOrLocation) => {
     cy.get(getElement.zipCodeOrLocation).type(zipCodeOrLocation)
 })
 
-Then('Validation message should appear if whitespaces include in zipCodeOrLocation textfield', () => {
-    cy.contains('Whitespaces are not allowed in zipCodeOrLocation textfield').should('exist')
+Then('Validation message saying {string} should appear', (validationMessage) => {
+    cy.contains(validationMessage).should('exist')
 })
 
 When('I click on terms and condition link', () => {
@@ -173,3 +146,19 @@ When('I click on privay and policy link', () => {
 Then('I should navigate to privay and policy page', () => {
     cy.url().should('be.equal', 'https://uat.jobot.com/privacy-policy')
 })
+
+function makeLargeString(charactersLength) {
+    var text = "";
+    var possible = "abc";
+    for (var i = 0; i < charactersLength; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}
+
+function makeLargeNumber(charactersLength) {
+    var text = "";
+    var possible = "123";
+    for (var i = 0; i < charactersLength; i++)
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    return text;
+}

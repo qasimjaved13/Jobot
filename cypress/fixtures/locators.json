@@ -13,7 +13,7 @@
   "textArea":"textarea.q-field__native.q-placeholder",
   "remotePosition":".q-toggle__inner",
   "submitBtn":"button[type='submit']",
-  "confirmatoinMessage":".text-h4.text-primary",
+  "confirmationMessage":".text-h4.text-primary",
   "emailValidationMessage":".q-field__messages.col",
   "termsAndConditions":".text-subtitle2 > [href='/terms-and-conditions']",
   "privayAndPolicy": ".text-subtitle2 > [href='/privacy-policy']"
