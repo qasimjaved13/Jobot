@@ -24,13 +24,13 @@ Feature: Contact us form
     Scenario: Validation message should appear if email address field exceed 256 characters in length
         When I enter 257 characters into work email address
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if Ext. field exceed 24 characters in length
         When I enter "test123@ymail.com" into work email address
         When I insert 26 characters into ext number
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if user insert alphabetic and special characters in ext number field
         When I enter "test123@ymail.com" into work email address
@@ -42,25 +42,25 @@ Feature: Contact us form
         When I enter "test123@ymail.com" into work email address
         When I insert 258 characters into company name
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if Company website textfield exceed 256 characters in length
         When I enter "test123@ymail.com" into work email address
         When I insert 258 characters into company website
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if job title textfield exceed 256 characters in length
         When I enter "test123@ymail.com" into work email address
         When I insert 258 characters into job title
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if zipCodeOrLocation textfield exceed 256 characters in length
         When I enter "test123@ymail.com" into work email address
         When I insert 258 characters into zipCodeOrLocation
         When I click on submit button
-        Then Validation message saying "Sorry! you are exceeding the charcaters limit" should appear.
+        Then Validation message saying "Sorry! you are exceeding the characters limit" should appear.
 
     Scenario: Validation message should appear if user insert less than 5 digits in zipCodeOrLocation textfield
         When I enter "test123@ymail.com" into work email address
