@@ -3,7 +3,7 @@ import { Given, When, Then } from "cypress-cucumber-preprocessor/steps";
 const getElement = require("../../fixtures/locators.json")
 
 Given('I navigate to the Jobot website', () => {
-    cy.visit('/')
+    cy.visit('/become-a-client')
     Cypress.on('uncaught:exception', (err, runnable) => {
         // returning false here prevents Cypress from failing the test
         return false

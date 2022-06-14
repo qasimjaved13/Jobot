@@ -3,14 +3,16 @@
     "responseTimeout": 6000,
     "screenshotOnFailure": false,
     "video": false,
-    "baseUrl": "https://uat.jobot.com/become-a-client",
+    "baseUrl": "https://uat.jobot.com",
     "reporter": "mochawesome",
     "reporterOptions": {
         "code": false,
         "overwrite": false,
         "reportFilename": "Test-Report",
-        "autoOpen": true,
+        "autoOpen": false,
         "charts": true
     },
-    "testFiles": "**/*.{feature,features}"
+    "testFiles": "**/*.{feature,features}",
+    "viewportWidth": 1024,
+    "viewportHeight": 768
 }
